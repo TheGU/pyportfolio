@@ -7,23 +7,61 @@ Author: vddoan
 24/05/2012
 
 """
+from xml.dom.minidom import Document
 
 class Writer(object):
-    def __init__(self,file_name):
-        self.file_name = file_name
-
+    def __init__(self, file_name, sheet_name, content):
+        self.file_name  = file_name
+        self.sheet_name = sheet_name
+        self.content    = content
+        
     def __del__(self):
       class_name = self.__class__.__name__
-      print class_name, "destroyed"
+      print class_name, " destroyed"
+    
+    def write_to_xml(self):
+        if os.path.isfile(self.file_name):
+            r = Reader(self.file_name)
+            
+        else:
+            raise IOError(self.file_name + " is not existed ")
+        
+
+
+
+
+
+
+
+
+
 
     def transforme_to_csv(self):
+        return 0
+
+    def create_xml_file(self, file_name):
+        ''' Create the minidom document '''
+        doc = Document()
+        f = open(xml_filename, 'w')
+        doc.writexml(f)
+        f.close()
+        return f
+
+    def append_to_xml_file(self, file_name, content ):
+    
+    def object_to_xml():
         
-        
-    def write_to_csv(self,csv_filename):
+    def write_to_xml_file(self, xml_filename):
+        return 0
+      
+    def write_to_csv_file(self,csv_filename):
         with open(csv_filename,'w') as f:
           f.write(self.transforme_to_csv())
 
-    def write_to_xls(self,xls_filename,sheet_name):
+    def create_xls_file(self, csv_filename):
+        
+    
+    def write_to_xls_file(self,xls_filename,sheet_name):
         """ Create a new workbook object """
         rb = xlrd.open_workbook(xls_filename,formatting_info=True)
         workbook = copy(rb) #a writable copy (I can't read values out of this, only write to it)
@@ -76,5 +114,9 @@ class Writer(object):
         
     
 class Reader:
-    def __init__(self,file_name):
+    def __init__(self, file_name):
         self.file_name = file_name
+
+    def __del__(self):
+      class_name = self.__class__.__name__
+      print class_name, " destroyed"

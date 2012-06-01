@@ -21,6 +21,9 @@ class AbstractPlottingPanel(object):
         self.title = title
         self.grid = grid
 
+      def __del__(self):
+            class_name = self.__class__.__name__
+            
       ''' For observer pattern '''  
       def update():
             raise NotImplementedError("Subclass must implement abstract method")
@@ -46,15 +49,18 @@ class AbstractPlottingPanel(object):
       def set_quote_data_via_local_file(self, file_name, file_type):
             raise NotImplementedError("Subclass must implement abstract method")
             
-''' Creator '''
-class PlottingPanelCreator(object):
+''' Factory '''
+class PlottingPanelFactory(object):
       def __init__(self, criteria, xlabel, ylabel, title, grid):
             self.criteria = criteria
             self.xlabel = xlabel
             self.ylabel = ylabel
             self.title = title
             self.grid = grid
-      
+
+      def __del__(self):
+            class_name = self.__class__.__name__
+            
       def get_panel(self):
             if self.criteria == "timeserie":
                   plotter = TimeSeriePlottingPanel(None, None, self.xlabel, self.ylabel, self.title, self.grid)
@@ -94,7 +100,6 @@ class TimeSeriePlottingPanel(AbstractPlottingPanel):
             self.ax.xaxis.set_minor_locator(alldays)
             self.ax.xaxis.set_major_formatter(weekFormatter)
 
-
       def setup_label_format(self):
             setp( gca().get_xticklabels(), rotation=45, horizontalalignment='right')
             
@@ -104,6 +109,9 @@ class TimeSeriePlottingPanel(AbstractPlottingPanel):
                 raise SystemExit
             else:
                 return self.quotes
+
+      def set_quote_data_via_random_generator(self):
+            
             
       def plot(self, plot_type):
             ''' check if quotes data is empty or not '''

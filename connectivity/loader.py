@@ -1,4 +1,3 @@
-from pylab import *
 from matplotlib.finance import quotes_historical_yahoo
 
 class AbstractLoader(object):
@@ -17,5 +16,12 @@ class HistoricalYahooDataLoader(AbstractLoader):
       def load(self):
             return quotes_historical_yahoo(self.ticker_name, self.start_date, self.end_date, asobject=True, adjusted=True)
 
-#class HistoricalGoogleDataLoader(AbstractLoader):
+class HistoricalGoogleDataLoader(AbstractLoader):
+      def __init__(self, ticker_name, start_date, end_date):
+        super(HistoricalGoogleDataLoader, self).__init__(ticker_name,start_date, end_date)
+
+
+
+
+        
       
