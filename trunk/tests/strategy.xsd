@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ 
+	<!-- abstract class AbstractStrategyFactory -->
+    <xs:complexType name="AbstractStrategyFactory" abstract="true">
+    <xs:sequence/>
+    </xs:complexType>
+	
+	<!-- concrete class BNPStrategyFactory -->
+	<xs:complexType name="BNPStrategyFactory">
+        <xs:sequence>
+            <xs:element name="strategy" type="AbstractStrategy" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+	
+	<!-- concrete class SGStrategyFactory -->
+	<xs:complexType name="SGStrategyFactory">
+        <xs:sequence>
+            <xs:element name="strategy" type="AbstractStrategy" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+	
+	<!-- definition of complex elements for strategy. A strategy may include one more many decisions -->
+	<xs:complexType name="Decision">
+		<xs:sequence>
+			<xs:element name="id" type="xs:integer" minOccurs="1"/>
+			<xs:element name="name" type="xs:string" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- abstract class AbstractStrategy -->
+	<xs:complexType name="AbstractStrategy" abstract="true">
+		<xs:sequence>
+			<!-- A strategy may include one more many decisions -->
+			<xs:element ref="Decision" maxOccurs="unbounded"/>
+        </xs:sequence>
+		<xs:element name="id" type="xs:integer" minOccurs="1"/>
+		<xs:element name="name" type="xs:string" minOccurs="1"/>
+    </xs:complexType>
+    
+	<!-- concrete class BNPStrategy extends AbstractStrategy -->
+	<xs:complexType name="BNPStrategy">
+        <xs:complexContent>
+            <xs:extension base="AbstractStrategy">
+                <xs:sequence>
+                    <xs:element name="bnp_attribute_1" type="xs:string" minOccurs="1"/>
+					<xs:element name="bnp_attribute_2" type="xs:string" minOccurs="1"/>
+                </xs:sequence>
+				<xs:element name="bnp_attribute_3" type="xs:string" minOccurs="1"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+	
+	<!-- concrete class SGStrategy extends AbstractStrategy -->
+	<xs:complexType name="SGStrategy">
+        <xs:complexContent>
+            <xs:extension base="AbstractStrategy">
+				<xs:element name="sg_attribute_1" type="xs:string" minOccurs="1"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+	
+</xs:schema>

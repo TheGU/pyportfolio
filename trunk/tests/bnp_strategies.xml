@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BNPStrategies>
+    <strategy id="1" name="BNP Strategy 1" bnp_attribute_1 = "bnp1-1" bnp_attribute_2 = "bnp1-2" bnp_attribute_3 = "bnp1-3">
+		<decision id="1" name="Open position">
+		</decision>
+		<decision id="2" name="Close position">
+		</decision>
+    </strategy>
+    <strategy id="2" name="BNP Strategy 2" bnp_attribute_1 = "bnp2-1" bnp_attribute_2 = "bnp2-2" bnp_attribute_3 = "bnp2-3">
+		<decision id="1" name="Open then close position">
+		</decision>
+    </strategy>
+    <strategy id="3" name="BNP Strategy 3" bnp_attribute_1 = "bnp3-1" bnp_attribute_2 = "bnp3-2" bnp_attribute_3 = "bnp3-3">
+		<decision id="1" name="Close then open position">
+		</decision>
+    </strategy>
+</BNPStrategies>

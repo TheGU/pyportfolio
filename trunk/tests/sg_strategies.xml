@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SGStrategies>
+    <strategy id="1" name="SG Strategy 1" sg_attribute_1 = "sg1-1">
+    </strategy>
+    <strategy id="2" name="SG Strategy 2" sg_attribute_1 = "sg2-1">
+    </strategy>
+    <strategy id="3" name="SG Strategy 3" sg_attribute_1 = "sg3-1">
+    </strategy>
+</SGStrategies>
