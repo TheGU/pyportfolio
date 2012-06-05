@@ -19,18 +19,24 @@ class StrategyReader(Reader):
       def __init__(self, file_name, strategy_category):
         super(StrategyReader, self).__init__(file_name)
         self.strategy_category = strategy_category
-
+        self.estimator_dictionary = {'MovingAverageEstimator': MovingAverageEstimator('MovingAverageEstimator', None),
+                                     'ExponetialWeightedMovingAverageEstimator': ExponetialWeightedMovingAverageEstimator('MovingAverageEstimator', None)}
+        self.strategy_dictionary = None
+        
       def xml_parse_to_tree(self):
             return etree.parse(self.file_name)
+
+      def get_estimator(self, estimator_name):
+            return  self.estimator_dictionary[estimator_name]
       
       def get_all_strategies(self):
             tree = self.xml_parse_to_tree()
             strategies = [] #[] from numpy
             for node in tree.iter('strategy'):
-                  if self.strategy_category == 'bnp':
-                        strategies.append(BNPStrategy(None, node.attrib.get('id'), node.attrib.get('name'), None, None, None))
-                  elif self.strategy_category == 'sg':
-                        strategies.append(SGStrategy(None, node.attrib.get('id'), node.attrib.get('name'), None))
+                  if self.strategy_category == 'voltarget':
+                        strategies.append(VolatilityTargetStrategy(None, node.attrib.get('id'), node.attrib.get('name'), None))
+                  elif self.strategy_category == 'volbudget':
+                        strategies.append(VolatilityBudgetStrategy(None, node.attrib.get('id'), node.attrib.get('name'), None, None))
             return strategies
             
       # A function to converts XML data into native Python object
@@ -39,9 +45,16 @@ class StrategyReader(Reader):
          for node in tree.iter('strategy'):
             node_criteria = node.attrib.get(criteria_name)
             if node_criteria == criteria_value:
-                  if self.strategy_category == 'bnp':
-                        return BNPStrategy(None, node.attrib.get('id'), node.attrib.get('name'), None, None, None)
-                  elif self.strategy_category == 'sg':
-                        return SGStrategy(None, node.attrib.get('id'), node.attrib.get('name'), None)
+                  if self.strategy_category == 'voltarget':
+                        sub_node = node.find('estimator')
+                        estimator = self.get_estimator(sub_node.attrib.get('name'))
+                        print estimator
+                        return VolatilityTargetStrategy(estimator, node.attrib.get('id'), node.attrib.get('name'), None)
+                  elif self.strategy_category == 'volbudget':
+                        sub_node = node.find('estimator')
+                        estimator = self.get_estimator(sub_node.attrib.get('name'))
+                        print estimator
+                        return VolatilityBudgetStrategy(None, node.attrib.get('id'), node.attrib.get('name'), None, None)
          return None
                
+

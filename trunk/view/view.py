@@ -111,7 +111,7 @@ class TimeSeriePlottingPanel(AbstractPlottingPanel):
                 return self.quotes
 
       def set_quote_data_via_random_generator(self):
-            
+            return 0
             
       def plot(self, plot_type):
             ''' check if quotes data is empty or not '''
