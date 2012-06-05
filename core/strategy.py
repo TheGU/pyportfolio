@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- 
 
 #
-# Generated Thu May 31 17:46:00 2012 by generateDS.py version 2.7b.
+# Generated Tue Jun 05 17:38:04 2012 by generateDS.py version 2.7b.
 #
 
 import sys
@@ -365,239 +365,27 @@ def _cast(typ, value):
 # Data representation classes.
 #
 
-class AbstractStrategyFactory(GeneratedsSuper):
+class AbstractEstimator(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self):
-        pass
-    def factory(*args_, **kwargs_):
-        if AbstractStrategyFactory.subclass:
-            return AbstractStrategyFactory.subclass(*args_, **kwargs_)
-        else:
-            return AbstractStrategyFactory(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def export(self, outfile, level, namespace_='', name_='AbstractStrategyFactory', namespacedef_=''):
-        showIndent(outfile, level)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = []
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='AbstractStrategyFactory')
-        if self.hasContent_():
-            outfile.write('>\n')
-            self.exportChildren(outfile, level + 1, namespace_, name_)
-            outfile.write('</%s%s>\n' % (namespace_, name_))
-        else:
-            outfile.write('/>\n')
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='AbstractStrategyFactory'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='AbstractStrategyFactory', fromsubclass_=False):
-        pass
-    def hasContent_(self):
-        if (
-
-            ):
-            return True
-        else:
-            return False
-    def exportLiteral(self, outfile, level, name_='AbstractStrategyFactory'):
-        level += 1
-        self.exportLiteralAttributes(outfile, level, [], name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        pass
-    def exportLiteralChildren(self, outfile, level, name_):
-        pass
-    def build(self, node):
-        self.buildAttributes(node, node.attrib, [])
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class AbstractStrategyFactory
-
-
-class BNPStrategyFactory(GeneratedsSuper):
-    subclass = None
-    superclass = None
-    def __init__(self, strategy=None):
-        self.strategy = strategy
-    def factory(*args_, **kwargs_):
-        if BNPStrategyFactory.subclass:
-            return BNPStrategyFactory.subclass(*args_, **kwargs_)
-        else:
-            return BNPStrategyFactory(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_strategy(self): return self.strategy
-    def set_strategy(self, strategy): self.strategy = strategy
-    def export(self, outfile, level, namespace_='', name_='BNPStrategyFactory', namespacedef_=''):
-        showIndent(outfile, level)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = []
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='BNPStrategyFactory')
-        if self.hasContent_():
-            outfile.write('>\n')
-            self.exportChildren(outfile, level + 1, namespace_, name_)
-            showIndent(outfile, level)
-            outfile.write('</%s%s>\n' % (namespace_, name_))
-        else:
-            outfile.write('/>\n')
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='BNPStrategyFactory'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='BNPStrategyFactory', fromsubclass_=False):
-        if self.strategy is not None:
-            self.strategy.export(outfile, level, namespace_, name_='strategy')
-    def hasContent_(self):
-        if (
-            self.strategy is not None
-            ):
-            return True
-        else:
-            return False
-    def exportLiteral(self, outfile, level, name_='BNPStrategyFactory'):
-        level += 1
-        self.exportLiteralAttributes(outfile, level, [], name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        pass
-    def exportLiteralChildren(self, outfile, level, name_):
-        if self.AbstractStrategy is not None:
-            showIndent(outfile, level)
-            outfile.write('AbstractStrategy=model_.AbstractStrategy(\n')
-            self.AbstractStrategy.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-    def build(self, node):
-        self.buildAttributes(node, node.attrib, [])
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'strategy':
-            type_name_ = child_.attrib.get('{http://www.w3.org/2001/XMLSchema-instance}type')
-            if type_name_ is None:
-                type_name_ = child_.attrib.get('type')
-            if type_name_ is not None:
-                type_names_ = type_name_.split(':')
-                if len(type_names_) == 1:
-                    type_name_ = type_names_[0]
-                else:
-                    type_name_ = type_names_[1]
-                class_ = globals()[type_name_]
-                obj_ = class_.factory()
-                obj_.build(child_)
-            else:
-                raise NotImplementedError(
-                    'Class not implemented for <strategy> element')
-            self.set_strategy(obj_)
-# end class BNPStrategyFactory
-
-
-class SGStrategyFactory(GeneratedsSuper):
-    subclass = None
-    superclass = None
-    def __init__(self, strategy=None):
-        self.strategy = strategy
-    def factory(*args_, **kwargs_):
-        if SGStrategyFactory.subclass:
-            return SGStrategyFactory.subclass(*args_, **kwargs_)
-        else:
-            return SGStrategyFactory(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_strategy(self): return self.strategy
-    def set_strategy(self, strategy): self.strategy = strategy
-    def export(self, outfile, level, namespace_='', name_='SGStrategyFactory', namespacedef_=''):
-        showIndent(outfile, level)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = []
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SGStrategyFactory')
-        if self.hasContent_():
-            outfile.write('>\n')
-            self.exportChildren(outfile, level + 1, namespace_, name_)
-            showIndent(outfile, level)
-            outfile.write('</%s%s>\n' % (namespace_, name_))
-        else:
-            outfile.write('/>\n')
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SGStrategyFactory'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='SGStrategyFactory', fromsubclass_=False):
-        if self.strategy is not None:
-            self.strategy.export(outfile, level, namespace_, name_='strategy')
-    def hasContent_(self):
-        if (
-            self.strategy is not None
-            ):
-            return True
-        else:
-            return False
-    def exportLiteral(self, outfile, level, name_='SGStrategyFactory'):
-        level += 1
-        self.exportLiteralAttributes(outfile, level, [], name_)
-        if self.hasContent_():
-            self.exportLiteralChildren(outfile, level, name_)
-    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        pass
-    def exportLiteralChildren(self, outfile, level, name_):
-        if self.AbstractStrategy is not None:
-            showIndent(outfile, level)
-            outfile.write('AbstractStrategy=model_.AbstractStrategy(\n')
-            self.AbstractStrategy.exportLiteral(outfile, level)
-            showIndent(outfile, level)
-            outfile.write('),\n')
-    def build(self, node):
-        self.buildAttributes(node, node.attrib, [])
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'strategy':
-            type_name_ = child_.attrib.get('{http://www.w3.org/2001/XMLSchema-instance}type')
-            if type_name_ is None:
-                type_name_ = child_.attrib.get('type')
-            if type_name_ is not None:
-                type_names_ = type_name_.split(':')
-                if len(type_names_) == 1:
-                    type_name_ = type_names_[0]
-                else:
-                    type_name_ = type_names_[1]
-                class_ = globals()[type_name_]
-                obj_ = class_.factory()
-                obj_.build(child_)
-            else:
-                raise NotImplementedError(
-                    'Class not implemented for <strategy> element')
-            self.set_strategy(obj_)
-# end class SGStrategyFactory
-
-
-class Decision(GeneratedsSuper):
-    subclass = None
-    superclass = None
-    def __init__(self, id=None, name=None):
-        self.id = id
+    def __init__(self, name=None, extensiontype_=None):
         self.name = name
+        self.extensiontype_ = extensiontype_
     def factory(*args_, **kwargs_):
-        if Decision.subclass:
-            return Decision.subclass(*args_, **kwargs_)
+        if AbstractEstimator.subclass:
+            return AbstractEstimator.subclass(*args_, **kwargs_)
         else:
-            return Decision(*args_, **kwargs_)
+            return AbstractEstimator(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_id(self): return self.id
-    def set_id(self, id): self.id = id
     def get_name(self): return self.name
     def set_name(self, name): self.name = name
-    def export(self, outfile, level, namespace_='', name_='Decision', namespacedef_=''):
+    def get_extensiontype_(self): return self.extensiontype_
+    def set_extensiontype_(self, extensiontype_): self.extensiontype_ = extensiontype_
+    def export(self, outfile, level, namespace_='', name_='AbstractEstimator', namespacedef_=''):
         showIndent(outfile, level)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = []
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='Decision')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='AbstractEstimator')
         if self.hasContent_():
             outfile.write('>\n')
             self.exportChildren(outfile, level + 1, namespace_, name_)
@@ -605,24 +393,24 @@ class Decision(GeneratedsSuper):
             outfile.write('</%s%s>\n' % (namespace_, name_))
         else:
             outfile.write('/>\n')
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='Decision'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='AbstractEstimator'):
+        if self.extensiontype_ is not None and 'xsi:type' not in already_processed:
+            already_processed.append('xsi:type')
+            outfile.write(' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"')
+            outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
-    def exportChildren(self, outfile, level, namespace_='', name_='Decision', fromsubclass_=False):
-        if self.id is not None:
-            showIndent(outfile, level)
-            outfile.write('<%sid>%s</%sid>\n' % (namespace_, self.gds_format_integer(self.id, input_name='id'), namespace_))
+    def exportChildren(self, outfile, level, namespace_='', name_='AbstractEstimator', fromsubclass_=False):
         if self.name is not None:
             showIndent(outfile, level)
             outfile.write('<%sname>%s</%sname>\n' % (namespace_, self.gds_format_string(quote_xml(self.name).encode(ExternalEncoding), input_name='name'), namespace_))
     def hasContent_(self):
         if (
-            self.id is not None or
             self.name is not None
             ):
             return True
         else:
             return False
-    def exportLiteral(self, outfile, level, name_='Decision'):
+    def exportLiteral(self, outfile, level, name_='AbstractEstimator'):
         level += 1
         self.exportLiteralAttributes(outfile, level, [], name_)
         if self.hasContent_():
@@ -630,9 +418,6 @@ class Decision(GeneratedsSuper):
     def exportLiteralAttributes(self, outfile, level, already_processed, name_):
         pass
     def exportLiteralChildren(self, outfile, level, name_):
-        if self.id is not None:
-            showIndent(outfile, level)
-            outfile.write('id=%d,\n' % self.id)
         if self.name is not None:
             showIndent(outfile, level)
             outfile.write('name=%s,\n' % quote_python(self.name).encode(ExternalEncoding))
@@ -642,31 +427,165 @@ class Decision(GeneratedsSuper):
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
     def buildAttributes(self, node, attrs, already_processed):
-        pass
+        value = find_attr_value_('xsi:type', node)
+        if value is not None and 'xsi:type' not in already_processed:
+            already_processed.append('xsi:type')
+            self.extensiontype_ = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'id':
+        if nodeName_ == 'name':
+            name_ = child_.text
+            name_ = self.gds_validate_string(name_, node, 'name')
+            self.name = name_
+# end class AbstractEstimator
+
+
+class MovingAverageEstimator(AbstractEstimator):
+    subclass = None
+    superclass = AbstractEstimator
+    def __init__(self, name=None, category=None):
+        super(MovingAverageEstimator, self).__init__(name, )
+        self.category = category
+    def factory(*args_, **kwargs_):
+        if MovingAverageEstimator.subclass:
+            return MovingAverageEstimator.subclass(*args_, **kwargs_)
+        else:
+            return MovingAverageEstimator(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_category(self): return self.category
+    def set_category(self, category): self.category = category
+    def export(self, outfile, level, namespace_='', name_='MovingAverageEstimator', namespacedef_=''):
+        showIndent(outfile, level)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = []
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='MovingAverageEstimator')
+        if self.hasContent_():
+            outfile.write('>\n')
+            self.exportChildren(outfile, level + 1, namespace_, name_)
+            showIndent(outfile, level)
+            outfile.write('</%s%s>\n' % (namespace_, name_))
+        else:
+            outfile.write('/>\n')
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='MovingAverageEstimator'):
+        super(MovingAverageEstimator, self).exportAttributes(outfile, level, already_processed, namespace_, name_='MovingAverageEstimator')
+    def exportChildren(self, outfile, level, namespace_='', name_='MovingAverageEstimator', fromsubclass_=False):
+        super(MovingAverageEstimator, self).exportChildren(outfile, level, namespace_, name_, True)
+        if self.category is not None:
+            showIndent(outfile, level)
+            outfile.write('<%scategory>%s</%scategory>\n' % (namespace_, self.gds_format_string(quote_xml(self.category).encode(ExternalEncoding), input_name='category'), namespace_))
+    def hasContent_(self):
+        if (
+            self.category is not None or
+            super(MovingAverageEstimator, self).hasContent_()
+            ):
+            return True
+        else:
+            return False
+    def exportLiteral(self, outfile, level, name_='MovingAverageEstimator'):
+        level += 1
+        self.exportLiteralAttributes(outfile, level, [], name_)
+        if self.hasContent_():
+            self.exportLiteralChildren(outfile, level, name_)
+    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
+        super(MovingAverageEstimator, self).exportLiteralAttributes(outfile, level, already_processed, name_)
+    def exportLiteralChildren(self, outfile, level, name_):
+        super(MovingAverageEstimator, self).exportLiteralChildren(outfile, level, name_)
+        if self.category is not None:
+            showIndent(outfile, level)
+            outfile.write('category=%s,\n' % quote_python(self.category).encode(ExternalEncoding))
+    def build(self, node):
+        self.buildAttributes(node, node.attrib, [])
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+    def buildAttributes(self, node, attrs, already_processed):
+        super(MovingAverageEstimator, self).buildAttributes(node, attrs, already_processed)
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'category':
+            category_ = child_.text
+            category_ = self.gds_validate_string(category_, node, 'category')
+            self.category = category_
+        super(MovingAverageEstimator, self).buildChildren(child_, node, nodeName_, True)
+# end class MovingAverageEstimator
+
+
+class ExponetialWeightedMovingAverageEstimator(AbstractEstimator):
+    subclass = None
+    superclass = AbstractEstimator
+    def __init__(self, name=None, category=None):
+        super(ExponetialWeightedMovingAverageEstimator, self).__init__(name, )
+        self.category = category
+    def factory(*args_, **kwargs_):
+        if ExponetialWeightedMovingAverageEstimator.subclass:
+            return ExponetialWeightedMovingAverageEstimator.subclass(*args_, **kwargs_)
+        else:
+            return ExponetialWeightedMovingAverageEstimator(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_category(self): return self.category
+    def set_category(self, category): self.category = category
+    def export(self, outfile, level, namespace_='', name_='ExponetialWeightedMovingAverageEstimator', namespacedef_=''):
+        showIndent(outfile, level)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = []
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='ExponetialWeightedMovingAverageEstimator')
+        if self.hasContent_():
+            outfile.write('>\n')
+            self.exportChildren(outfile, level + 1, namespace_, name_)
+            showIndent(outfile, level)
+            outfile.write('</%s%s>\n' % (namespace_, name_))
+        else:
+            outfile.write('/>\n')
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='ExponetialWeightedMovingAverageEstimator'):
+        super(ExponetialWeightedMovingAverageEstimator, self).exportAttributes(outfile, level, already_processed, namespace_, name_='ExponetialWeightedMovingAverageEstimator')
+    def exportChildren(self, outfile, level, namespace_='', name_='ExponetialWeightedMovingAverageEstimator', fromsubclass_=False):
+        super(ExponetialWeightedMovingAverageEstimator, self).exportChildren(outfile, level, namespace_, name_, True)
+        if self.category is not None:
+            showIndent(outfile, level)
+            outfile.write('<%scategory>%s</%scategory>\n' % (namespace_, self.gds_format_integer(self.category, input_name='category'), namespace_))
+    def hasContent_(self):
+        if (
+            self.category is not None or
+            super(ExponetialWeightedMovingAverageEstimator, self).hasContent_()
+            ):
+            return True
+        else:
+            return False
+    def exportLiteral(self, outfile, level, name_='ExponetialWeightedMovingAverageEstimator'):
+        level += 1
+        self.exportLiteralAttributes(outfile, level, [], name_)
+        if self.hasContent_():
+            self.exportLiteralChildren(outfile, level, name_)
+    def exportLiteralAttributes(self, outfile, level, already_processed, name_):
+        super(ExponetialWeightedMovingAverageEstimator, self).exportLiteralAttributes(outfile, level, already_processed, name_)
+    def exportLiteralChildren(self, outfile, level, name_):
+        super(ExponetialWeightedMovingAverageEstimator, self).exportLiteralChildren(outfile, level, name_)
+        if self.category is not None:
+            showIndent(outfile, level)
+            outfile.write('category=%d,\n' % self.category)
+    def build(self, node):
+        self.buildAttributes(node, node.attrib, [])
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+    def buildAttributes(self, node, attrs, already_processed):
+        super(ExponetialWeightedMovingAverageEstimator, self).buildAttributes(node, attrs, already_processed)
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'category':
             sval_ = child_.text
             try:
                 ival_ = int(sval_)
             except (TypeError, ValueError), exp:
                 raise_parse_error(child_, 'requires integer: %s' % exp)
-            ival_ = self.gds_validate_integer(ival_, node, 'id')
-            self.id = ival_
-        elif nodeName_ == 'name':
-            name_ = child_.text
-            name_ = self.gds_validate_string(name_, node, 'name')
-            self.name = name_
-# end class Decision
+            ival_ = self.gds_validate_integer(ival_, node, 'category')
+            self.category = ival_
+        super(ExponetialWeightedMovingAverageEstimator, self).buildChildren(child_, node, nodeName_, True)
+# end class ExponetialWeightedMovingAverageEstimator
 
 
 class AbstractStrategy(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, Decision=None, id=None, name=None, extensiontype_=None):
-        if Decision is None:
-            self.Decision = []
-        else:
-            self.Decision = Decision
+    def __init__(self, AbstractEstimator=None, id=None, name=None, extensiontype_=None):
+        self.AbstractEstimator = AbstractEstimator
         self.id = id
         self.name = name
         self.extensiontype_ = extensiontype_
@@ -676,10 +595,8 @@ class AbstractStrategy(GeneratedsSuper):
         else:
             return AbstractStrategy(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_Decision(self): return self.Decision
-    def set_Decision(self, Decision): self.Decision = Decision
-    def add_Decision(self, value): self.Decision.append(value)
-    def insert_Decision(self, index, value): self.Decision[index] = value
+    def get_AbstractEstimator(self): return self.AbstractEstimator
+    def set_AbstractEstimator(self, AbstractEstimator): self.AbstractEstimator = AbstractEstimator
     def get_id(self): return self.id
     def set_id(self, id): self.id = id
     def get_name(self): return self.name
@@ -705,8 +622,8 @@ class AbstractStrategy(GeneratedsSuper):
             outfile.write(' xsi:type="%s"' % self.extensiontype_)
         pass
     def exportChildren(self, outfile, level, namespace_='', name_='AbstractStrategy', fromsubclass_=False):
-        for Decision_ in self.Decision:
-            Decision_.export(outfile, level, namespace_, name_='Decision')
+        if self.AbstractEstimator is not None:
+            self.AbstractEstimator.export(outfile, level, namespace_, name_='AbstractEstimator', )
         if self.id is not None:
             showIndent(outfile, level)
             outfile.write('<%sid>%s</%sid>\n' % (namespace_, self.gds_format_integer(self.id, input_name='id'), namespace_))
@@ -715,7 +632,7 @@ class AbstractStrategy(GeneratedsSuper):
             outfile.write('<%sname>%s</%sname>\n' % (namespace_, self.gds_format_string(quote_xml(self.name).encode(ExternalEncoding), input_name='name'), namespace_))
     def hasContent_(self):
         if (
-            self.Decision or
+            self.AbstractEstimator is not None or
             self.id is not None or
             self.name is not None
             ):
@@ -730,18 +647,12 @@ class AbstractStrategy(GeneratedsSuper):
     def exportLiteralAttributes(self, outfile, level, already_processed, name_):
         pass
     def exportLiteralChildren(self, outfile, level, name_):
-        showIndent(outfile, level)
-        outfile.write('Decision=[\n')
-        level += 1
-        for Decision_ in self.Decision:
+        if self.AbstractEstimator is not None:
             showIndent(outfile, level)
-            outfile.write('model_.Decision(\n')
-            Decision_.exportLiteral(outfile, level)
+            outfile.write('AbstractEstimator=model_.AbstractEstimator(\n')
+            self.AbstractEstimator.exportLiteral(outfile, level)
             showIndent(outfile, level)
             outfile.write('),\n')
-        level -= 1
-        showIndent(outfile, level)
-        outfile.write('],\n')
         if self.id is not None:
             showIndent(outfile, level)
             outfile.write('id=%d,\n' % self.id)
@@ -759,10 +670,11 @@ class AbstractStrategy(GeneratedsSuper):
             already_processed.append('xsi:type')
             self.extensiontype_ = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'Decision':
-            obj_ = Decision.factory()
+        if nodeName_ == 'AbstractEstimator':
+            class_obj_ = self.get_class_obj_(child_, AbstractEstimator)
+            obj_ = class_obj_.factory()
             obj_.build(child_)
-            self.Decision.append(obj_)
+            self.set_AbstractEstimator(obj_)
         elif nodeName_ == 'id':
             sval_ = child_.text
             try:
@@ -778,31 +690,25 @@ class AbstractStrategy(GeneratedsSuper):
 # end class AbstractStrategy
 
 
-class BNPStrategy(AbstractStrategy):
+class VolatilityTargetStrategy(AbstractStrategy):
     subclass = None
     superclass = AbstractStrategy
-    def __init__(self, Decision=None, id=None, name=None, bnp_attribute_1=None, bnp_attribute_2=None, bnp_attribute_3=None):
-        super(BNPStrategy, self).__init__(Decision, id, name, )
-        self.bnp_attribute_1 = bnp_attribute_1
-        self.bnp_attribute_2 = bnp_attribute_2
-        self.bnp_attribute_3 = bnp_attribute_3
+    def __init__(self, AbstractEstimator=None, id=None, name=None, expected_volatility=None):
+        super(VolatilityTargetStrategy, self).__init__(AbstractEstimator, id, name, )
+        self.expected_volatility = expected_volatility
     def factory(*args_, **kwargs_):
-        if BNPStrategy.subclass:
-            return BNPStrategy.subclass(*args_, **kwargs_)
+        if VolatilityTargetStrategy.subclass:
+            return VolatilityTargetStrategy.subclass(*args_, **kwargs_)
         else:
-            return BNPStrategy(*args_, **kwargs_)
+            return VolatilityTargetStrategy(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_bnp_attribute_1(self): return self.bnp_attribute_1
-    def set_bnp_attribute_1(self, bnp_attribute_1): self.bnp_attribute_1 = bnp_attribute_1
-    def get_bnp_attribute_2(self): return self.bnp_attribute_2
-    def set_bnp_attribute_2(self, bnp_attribute_2): self.bnp_attribute_2 = bnp_attribute_2
-    def get_bnp_attribute_3(self): return self.bnp_attribute_3
-    def set_bnp_attribute_3(self, bnp_attribute_3): self.bnp_attribute_3 = bnp_attribute_3
-    def export(self, outfile, level, namespace_='', name_='BNPStrategy', namespacedef_=''):
+    def get_expected_volatility(self): return self.expected_volatility
+    def set_expected_volatility(self, expected_volatility): self.expected_volatility = expected_volatility
+    def export(self, outfile, level, namespace_='', name_='VolatilityTargetStrategy', namespacedef_=''):
         showIndent(outfile, level)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = []
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='BNPStrategy')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='VolatilityTargetStrategy')
         if self.hasContent_():
             outfile.write('>\n')
             self.exportChildren(outfile, level + 1, namespace_, name_)
@@ -810,90 +716,75 @@ class BNPStrategy(AbstractStrategy):
             outfile.write('</%s%s>\n' % (namespace_, name_))
         else:
             outfile.write('/>\n')
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='BNPStrategy'):
-        super(BNPStrategy, self).exportAttributes(outfile, level, already_processed, namespace_, name_='BNPStrategy')
-    def exportChildren(self, outfile, level, namespace_='', name_='BNPStrategy', fromsubclass_=False):
-        super(BNPStrategy, self).exportChildren(outfile, level, namespace_, name_, True)
-        if self.bnp_attribute_1 is not None:
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='VolatilityTargetStrategy'):
+        super(VolatilityTargetStrategy, self).exportAttributes(outfile, level, already_processed, namespace_, name_='VolatilityTargetStrategy')
+    def exportChildren(self, outfile, level, namespace_='', name_='VolatilityTargetStrategy', fromsubclass_=False):
+        super(VolatilityTargetStrategy, self).exportChildren(outfile, level, namespace_, name_, True)
+        if self.expected_volatility is not None:
             showIndent(outfile, level)
-            outfile.write('<%sbnp_attribute_1>%s</%sbnp_attribute_1>\n' % (namespace_, self.gds_format_string(quote_xml(self.bnp_attribute_1).encode(ExternalEncoding), input_name='bnp_attribute_1'), namespace_))
-        if self.bnp_attribute_2 is not None:
-            showIndent(outfile, level)
-            outfile.write('<%sbnp_attribute_2>%s</%sbnp_attribute_2>\n' % (namespace_, self.gds_format_string(quote_xml(self.bnp_attribute_2).encode(ExternalEncoding), input_name='bnp_attribute_2'), namespace_))
-        if self.bnp_attribute_3 is not None:
-            showIndent(outfile, level)
-            outfile.write('<%sbnp_attribute_3>%s</%sbnp_attribute_3>\n' % (namespace_, self.gds_format_string(quote_xml(self.bnp_attribute_3).encode(ExternalEncoding), input_name='bnp_attribute_3'), namespace_))
+            outfile.write('<%sexpected_volatility>%s</%sexpected_volatility>\n' % (namespace_, self.gds_format_double(self.expected_volatility, input_name='expected_volatility'), namespace_))
     def hasContent_(self):
         if (
-            self.bnp_attribute_1 is not None or
-            self.bnp_attribute_2 is not None or
-            self.bnp_attribute_3 is not None or
-            super(BNPStrategy, self).hasContent_()
+            self.expected_volatility is not None or
+            super(VolatilityTargetStrategy, self).hasContent_()
             ):
             return True
         else:
             return False
-    def exportLiteral(self, outfile, level, name_='BNPStrategy'):
+    def exportLiteral(self, outfile, level, name_='VolatilityTargetStrategy'):
         level += 1
         self.exportLiteralAttributes(outfile, level, [], name_)
         if self.hasContent_():
             self.exportLiteralChildren(outfile, level, name_)
     def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        super(BNPStrategy, self).exportLiteralAttributes(outfile, level, already_processed, name_)
+        super(VolatilityTargetStrategy, self).exportLiteralAttributes(outfile, level, already_processed, name_)
     def exportLiteralChildren(self, outfile, level, name_):
-        super(BNPStrategy, self).exportLiteralChildren(outfile, level, name_)
-        if self.bnp_attribute_1 is not None:
+        super(VolatilityTargetStrategy, self).exportLiteralChildren(outfile, level, name_)
+        if self.expected_volatility is not None:
             showIndent(outfile, level)
-            outfile.write('bnp_attribute_1=%s,\n' % quote_python(self.bnp_attribute_1).encode(ExternalEncoding))
-        if self.bnp_attribute_2 is not None:
-            showIndent(outfile, level)
-            outfile.write('bnp_attribute_2=%s,\n' % quote_python(self.bnp_attribute_2).encode(ExternalEncoding))
-        if self.bnp_attribute_3 is not None:
-            showIndent(outfile, level)
-            outfile.write('bnp_attribute_3=%s,\n' % quote_python(self.bnp_attribute_3).encode(ExternalEncoding))
+            outfile.write('expected_volatility=%e,\n' % self.expected_volatility)
     def build(self, node):
         self.buildAttributes(node, node.attrib, [])
         for child in node:
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
     def buildAttributes(self, node, attrs, already_processed):
-        super(BNPStrategy, self).buildAttributes(node, attrs, already_processed)
+        super(VolatilityTargetStrategy, self).buildAttributes(node, attrs, already_processed)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'bnp_attribute_1':
-            bnp_attribute_1_ = child_.text
-            bnp_attribute_1_ = self.gds_validate_string(bnp_attribute_1_, node, 'bnp_attribute_1')
-            self.bnp_attribute_1 = bnp_attribute_1_
-        elif nodeName_ == 'bnp_attribute_2':
-            bnp_attribute_2_ = child_.text
-            bnp_attribute_2_ = self.gds_validate_string(bnp_attribute_2_, node, 'bnp_attribute_2')
-            self.bnp_attribute_2 = bnp_attribute_2_
-        elif nodeName_ == 'bnp_attribute_3':
-            bnp_attribute_3_ = child_.text
-            bnp_attribute_3_ = self.gds_validate_string(bnp_attribute_3_, node, 'bnp_attribute_3')
-            self.bnp_attribute_3 = bnp_attribute_3_
-        super(BNPStrategy, self).buildChildren(child_, node, nodeName_, True)
-# end class BNPStrategy
+        if nodeName_ == 'expected_volatility':
+            sval_ = child_.text
+            try:
+                fval_ = float(sval_)
+            except (TypeError, ValueError), exp:
+                raise_parse_error(child_, 'requires float or double: %s' % exp)
+            fval_ = self.gds_validate_float(fval_, node, 'expected_volatility')
+            self.expected_volatility = fval_
+        super(VolatilityTargetStrategy, self).buildChildren(child_, node, nodeName_, True)
+# end class VolatilityTargetStrategy
 
 
-class SGStrategy(AbstractStrategy):
+class VolatilityBudgetStrategy(AbstractStrategy):
     subclass = None
     superclass = AbstractStrategy
-    def __init__(self, Decision=None, id=None, name=None, sg_attribute_1=None):
-        super(SGStrategy, self).__init__(Decision, id, name, )
-        self.sg_attribute_1 = sg_attribute_1
+    def __init__(self, AbstractEstimator=None, id=None, name=None, expected_volatility=None, budget=None):
+        super(VolatilityBudgetStrategy, self).__init__(AbstractEstimator, id, name, )
+        self.expected_volatility = expected_volatility
+        self.budget = budget
     def factory(*args_, **kwargs_):
-        if SGStrategy.subclass:
-            return SGStrategy.subclass(*args_, **kwargs_)
+        if VolatilityBudgetStrategy.subclass:
+            return VolatilityBudgetStrategy.subclass(*args_, **kwargs_)
         else:
-            return SGStrategy(*args_, **kwargs_)
+            return VolatilityBudgetStrategy(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_sg_attribute_1(self): return self.sg_attribute_1
-    def set_sg_attribute_1(self, sg_attribute_1): self.sg_attribute_1 = sg_attribute_1
-    def export(self, outfile, level, namespace_='', name_='SGStrategy', namespacedef_=''):
+    def get_expected_volatility(self): return self.expected_volatility
+    def set_expected_volatility(self, expected_volatility): self.expected_volatility = expected_volatility
+    def get_budget(self): return self.budget
+    def set_budget(self, budget): self.budget = budget
+    def export(self, outfile, level, namespace_='', name_='VolatilityBudgetStrategy', namespacedef_=''):
         showIndent(outfile, level)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = []
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SGStrategy')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='VolatilityBudgetStrategy')
         if self.hasContent_():
             outfile.write('>\n')
             self.exportChildren(outfile, level + 1, namespace_, name_)
@@ -901,47 +792,66 @@ class SGStrategy(AbstractStrategy):
             outfile.write('</%s%s>\n' % (namespace_, name_))
         else:
             outfile.write('/>\n')
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SGStrategy'):
-        super(SGStrategy, self).exportAttributes(outfile, level, already_processed, namespace_, name_='SGStrategy')
-    def exportChildren(self, outfile, level, namespace_='', name_='SGStrategy', fromsubclass_=False):
-        super(SGStrategy, self).exportChildren(outfile, level, namespace_, name_, True)
-        if self.sg_attribute_1 is not None:
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='VolatilityBudgetStrategy'):
+        super(VolatilityBudgetStrategy, self).exportAttributes(outfile, level, already_processed, namespace_, name_='VolatilityBudgetStrategy')
+    def exportChildren(self, outfile, level, namespace_='', name_='VolatilityBudgetStrategy', fromsubclass_=False):
+        super(VolatilityBudgetStrategy, self).exportChildren(outfile, level, namespace_, name_, True)
+        if self.expected_volatility is not None:
             showIndent(outfile, level)
-            outfile.write('<%ssg_attribute_1>%s</%ssg_attribute_1>\n' % (namespace_, self.gds_format_string(quote_xml(self.sg_attribute_1).encode(ExternalEncoding), input_name='sg_attribute_1'), namespace_))
+            outfile.write('<%sexpected_volatility>%s</%sexpected_volatility>\n' % (namespace_, self.gds_format_double(self.expected_volatility, input_name='expected_volatility'), namespace_))
+        if self.budget is not None:
+            showIndent(outfile, level)
+            outfile.write('<%sbudget>%s</%sbudget>\n' % (namespace_, self.gds_format_double(self.budget, input_name='budget'), namespace_))
     def hasContent_(self):
         if (
-            self.sg_attribute_1 is not None or
-            super(SGStrategy, self).hasContent_()
+            self.expected_volatility is not None or
+            self.budget is not None or
+            super(VolatilityBudgetStrategy, self).hasContent_()
             ):
             return True
         else:
             return False
-    def exportLiteral(self, outfile, level, name_='SGStrategy'):
+    def exportLiteral(self, outfile, level, name_='VolatilityBudgetStrategy'):
         level += 1
         self.exportLiteralAttributes(outfile, level, [], name_)
         if self.hasContent_():
             self.exportLiteralChildren(outfile, level, name_)
     def exportLiteralAttributes(self, outfile, level, already_processed, name_):
-        super(SGStrategy, self).exportLiteralAttributes(outfile, level, already_processed, name_)
+        super(VolatilityBudgetStrategy, self).exportLiteralAttributes(outfile, level, already_processed, name_)
     def exportLiteralChildren(self, outfile, level, name_):
-        super(SGStrategy, self).exportLiteralChildren(outfile, level, name_)
-        if self.sg_attribute_1 is not None:
+        super(VolatilityBudgetStrategy, self).exportLiteralChildren(outfile, level, name_)
+        if self.expected_volatility is not None:
             showIndent(outfile, level)
-            outfile.write('sg_attribute_1=%s,\n' % quote_python(self.sg_attribute_1).encode(ExternalEncoding))
+            outfile.write('expected_volatility=%e,\n' % self.expected_volatility)
+        if self.budget is not None:
+            showIndent(outfile, level)
+            outfile.write('budget=%e,\n' % self.budget)
     def build(self, node):
         self.buildAttributes(node, node.attrib, [])
         for child in node:
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
     def buildAttributes(self, node, attrs, already_processed):
-        super(SGStrategy, self).buildAttributes(node, attrs, already_processed)
+        super(VolatilityBudgetStrategy, self).buildAttributes(node, attrs, already_processed)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'sg_attribute_1':
-            sg_attribute_1_ = child_.text
-            sg_attribute_1_ = self.gds_validate_string(sg_attribute_1_, node, 'sg_attribute_1')
-            self.sg_attribute_1 = sg_attribute_1_
-        super(SGStrategy, self).buildChildren(child_, node, nodeName_, True)
-# end class SGStrategy
+        if nodeName_ == 'expected_volatility':
+            sval_ = child_.text
+            try:
+                fval_ = float(sval_)
+            except (TypeError, ValueError), exp:
+                raise_parse_error(child_, 'requires float or double: %s' % exp)
+            fval_ = self.gds_validate_float(fval_, node, 'expected_volatility')
+            self.expected_volatility = fval_
+        elif nodeName_ == 'budget':
+            sval_ = child_.text
+            try:
+                fval_ = float(sval_)
+            except (TypeError, ValueError), exp:
+                raise_parse_error(child_, 'requires float or double: %s' % exp)
+            fval_ = self.gds_validate_float(fval_, node, 'budget')
+            self.budget = fval_
+        super(VolatilityBudgetStrategy, self).buildChildren(child_, node, nodeName_, True)
+# end class VolatilityBudgetStrategy
 
 
 USAGE_TEXT = """
@@ -964,8 +874,8 @@ def parse(inFileName):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'AbstractStrategyFactory'
-        rootClass = AbstractStrategyFactory
+        rootTag = 'AbstractEstimator'
+        rootClass = AbstractEstimator
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -982,14 +892,14 @@ def parseString(inString):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'AbstractStrategyFactory'
-        rootClass = AbstractStrategyFactory
+        rootTag = 'AbstractEstimator'
+        rootClass = AbstractEstimator
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
     doc = None
     sys.stdout.write('<?xml version="1.0" ?>\n')
-    rootObj.export(sys.stdout, 0, name_="AbstractStrategyFactory",
+    rootObj.export(sys.stdout, 0, name_="AbstractEstimator",
         namespacedef_='')
     return rootObj
 
@@ -999,8 +909,8 @@ def parseLiteral(inFileName):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'AbstractStrategyFactory'
-        rootClass = AbstractStrategyFactory
+        rootTag = 'AbstractEstimator'
+        rootClass = AbstractEstimator
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -1027,11 +937,10 @@ if __name__ == '__main__':
 
 
 __all__ = [
+    "AbstractEstimator",
     "AbstractStrategy",
-    "AbstractStrategyFactory",
-    "BNPStrategy",
-    "BNPStrategyFactory",
-    "Decision",
-    "SGStrategy",
-    "SGStrategyFactory"
+    "ExponetialWeightedMovingAverageEstimator",
+    "MovingAverageEstimator",
+    "VolatilityBudgetStrategy",
+    "VolatilityTargetStrategy"
     ]

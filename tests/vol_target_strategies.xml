@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strategies>
+    <strategy id="1" name="Vol Target 1" expected_volatility = "0.2">
+		<estimator id="1" name="MovingAverageEstimator" formular_id = "1">
+		</estimator>
+    </strategy>
+    <strategy id="2" name="Vol Target 2" expected_volatility = "0.15">
+		<estimator id="1" name="MovingAverageEstimator" formular_id = "1">
+		</estimator>
+    </strategy>
+    <strategy id="3" name="Vol Target 3" expected_volatility = "0.2">
+		<estimator id="1" name="ExponetialWeightedMovingAverageEstimator" formular_id = "1">
+		</estimator>
+    </strategy>
+</strategies>
