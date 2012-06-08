@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
-	<!-- definition of abstract estimator -->
+	<!-- definition of abstract estimator 
 	<xs:complexType name="AbstractEstimator">
 		<xs:sequence>
 			<xs:element name="name" type="xs:string" minOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
-	
-	<!-- definition of complex elements for strategy. A strategy may include one more many estimator -->
+	-->
+	<!-- definition of complex elements for strategy. A strategy may include one more many estimator 
 	<xs:complexType name="MovingAverageEstimator">
 	    <xs:complexContent>
             <xs:extension base="AbstractEstimator">
@@ -28,7 +28,7 @@
             </xs:extension>
         </xs:complexContent>
 	</xs:complexType>
-	
+	-->
 	<!-- abstract class AbstractStrategy -->
 	<xs:complexType name="AbstractStrategy" abstract="true">
 		<xs:sequence>
