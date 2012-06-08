@@ -5,6 +5,7 @@ EOD data, realtime data, computed data
 
 Author: vddoan
 24/05/2012
+version:
 
 """
 import urllib,time,datetime
@@ -28,7 +29,7 @@ class AbstractData(object):
         raise NotImplementedError("Subclass must implement abstract method")
 
     def to_string(self):
-        
+        raise NotImplementedError("Subclass must implement abstract method")
     
 class EODData(AbstractData):
     def __init__(self, data_name, date, time, open_, high, low, close, volume):

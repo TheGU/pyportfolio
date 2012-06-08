@@ -1,7 +1,17 @@
+"""
+Classes for helpful tools such as StrategyReader (convert from the XML data to create the Python objects)
+
+Author: vddoan
+24/05/2012
+version:
+
+"""
+
 import xml.dom.minidom as minidom
 import xml.etree.ElementTree as etree
-from pyportfolio.core.strategy import *
 from numpy import *
+from pyportfolio.core.strategy import *
+from pyportfolio.core.estimator import *
 
 class Reader(object):
 
@@ -19,15 +29,15 @@ class StrategyReader(Reader):
       def __init__(self, file_name, strategy_category):
         super(StrategyReader, self).__init__(file_name)
         self.strategy_category = strategy_category
-        self.estimator_dictionary = {'MovingAverageEstimator': MovingAverageEstimator('MovingAverageEstimator', None),
-                                     'ExponetialWeightedMovingAverageEstimator': ExponetialWeightedMovingAverageEstimator('MovingAverageEstimator', None)}
-        self.strategy_dictionary = None
+        self.estimator_dictionnary = {'MovingAverageEstimator': MovingAverageEstimator('MovingAverageEstimator'),
+                                     'ExponetialWeightedMovingAverageEstimator': ExponetialWeightedMovingAverageEstimator('ExponetialWeightedMovingAverageEstimator')}
+        self.strategy_dictionnary = None
         
       def xml_parse_to_tree(self):
             return etree.parse(self.file_name)
 
       def get_estimator(self, estimator_name):
-            return  self.estimator_dictionary[estimator_name]
+            return  self.estimator_dictionnary[estimator_name]
       
       def get_all_strategies(self):
             tree = self.xml_parse_to_tree()
@@ -48,12 +58,10 @@ class StrategyReader(Reader):
                   if self.strategy_category == 'voltarget':
                         sub_node = node.find('estimator')
                         estimator = self.get_estimator(sub_node.attrib.get('name'))
-                        print estimator
                         return VolatilityTargetStrategy(estimator, node.attrib.get('id'), node.attrib.get('name'), None)
                   elif self.strategy_category == 'volbudget':
                         sub_node = node.find('estimator')
                         estimator = self.get_estimator(sub_node.attrib.get('name'))
-                        print estimator
                         return VolatilityBudgetStrategy(None, node.attrib.get('id'), node.attrib.get('name'), None, None)
          return None
                
